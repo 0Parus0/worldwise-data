@@ -7,7 +7,7 @@ const middlewares = jsonServer.defaults();
 server.use(middlewares);
 // Add this before server.use(router)
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
   res.header("Access-Control-Allow-Headers", "*");
   next();
 });
