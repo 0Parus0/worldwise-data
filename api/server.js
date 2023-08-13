@@ -1,13 +1,16 @@
 // See https://github.com/typicode/json-server#module
-const cors = require("cors");
 const jsonServer = require("json-server");
 const server = jsonServer.create();
-server.use(cors());
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
 // Add this before server.use(router)
+server.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
 server.use(
   jsonServer.rewriter({
     "/api/*": "/$1",
